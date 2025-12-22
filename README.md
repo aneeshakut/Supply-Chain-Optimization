@@ -26,6 +26,3 @@ Network for the next 5 years considering the recent increase in shipping costs a
 <p align="center">
   <img align="center" src="https://miro.medium.com/max/700/1*rtP7otnvgY2nT-ONqtAM6A.png">
 </p>
-
-Please have a look at my personal blog: [Personal Website](https://samirsaci.com)
-
