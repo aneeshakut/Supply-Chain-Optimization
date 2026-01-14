@@ -1,10 +1,4 @@
 ## Supply Chain Optimization with Python 👷
-*Find the optimal locations of your manufacturing facilities to meet your customers’ demand and reduce production costs*
-
-
-<p align="center">
-  <img align="center" src="https://miro.medium.com/max/1280/1*haKSsgOaPd_oON5IlyAkIg.png">
-</p>
 
 ### Article
 In this [Article](https://www.samirsaci.com/supply-chain-optimization-with-python/), we will present a simple methodology using Linear Programming for Supply Chain Optimization considering
@@ -12,12 +6,6 @@ In this [Article](https://www.samirsaci.com/supply-chain-optimization-with-pytho
 - Variable production costs per unit produced ($/Unit)
 - Shipping costs ($)
 - Customer’s demand (Units)
-
-### Youtube Video
-Click on the image below to access a full tutorial to understand the concept behind this solution
-<div align="center">
-  <a href="https://www.youtube.com/watch?v=gF9ds3CH3N4"><img src="https://i.ytimg.com/an_webp/gF9ds3CH3N4/mqdefault_6s.webp?du=3000&sqp=CJKPg70G&rs=AOn4CLBm-0RLB16DvANhOLIja6E8qrJOhQ" alt="Video Link"></a>
-</div>
 
 
 #### Problem Statement
