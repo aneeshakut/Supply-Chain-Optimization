@@ -137,6 +137,3 @@ A multinational manufacturing company aims to **redesign its supply chain** to:
 - Model **inventory and storage costs**
 - Incorporate **delivery lead times & customs**
 - Simulate **currency fluctuations and geopolitical risks**
-
-## 📂 Repository Structure
-
