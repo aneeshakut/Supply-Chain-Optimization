@@ -4,110 +4,139 @@
   <img align="center" src="https://miro.medium.com/max/700/1*rtP7otnvgY2nT-ONqtAM6A.png">
 </p>
 
-This project demonstrates **data-driven supply chain network optimization** using **Linear Programming (MILP)** in Python.  
-It identifies the optimal locations, sizes, and production flows of manufacturing plants to **minimize total cost** while meeting multi-country demand.
+
+This project implements a **data-driven global supply chain optimization model** to **minimize total costs** while meeting multi-country demand.  
+It identifies **optimal plant locations, sizes, and production flows** under capacity, production, and shipping constraints.
 
 ---
 
 ## 📝 Problem Statement
 
-A multinational manufacturing company seeks to redesign its supply chain to:
+A multinational manufacturing company aims to **redesign its supply chain** to:
 
-- Reduce total monthly costs (production + shipping + fixed plant costs)
-- Satisfy demand in multiple countries
-- Adapt to rising shipping costs and capacity constraints
-- Evaluate strategic scenarios for future expansion or disruption
+- Reduce total monthly costs (fixed + production + shipping)
+- Satisfy demand across multiple countries
+- Adapt to rising shipping costs and capacity limitations
+- Evaluate strategic scenarios for growth or disruption
 
 ---
 
 ## 🎯 Problem-Solving Methodology
 
-### 1. Define the Problem
-- Optimize global plant locations, sizes, and production flows
-- Minimize total supply chain cost
-- Meet all market demand under capacity and cost constraints
+### 1️⃣ Define the Problem
+- Optimize **plant locations and sizes**
+- Minimize total cost while satisfying all market demands
 
-### 2. Identify Decision Variables
-- **Strategic:** Open a Low/High-capacity plant in each country (binary)
-- **Operational:** Production quantity from each plant to each market (continuous)
+### 2️⃣ Identify Decision Variables
+| Type | Variable |
+|------|----------|
+| Strategic | Open Low/High-capacity plant in each country (binary) |
+| Operational | Production quantity from each plant to each market (continuous) |
 
-### 3. Quantify Costs
-- **Fixed Costs:** Rent, utilities, equipment, and management
-- **Variable Costs:** Production cost per unit
-- **Shipping Costs:** Per-unit shipping cost derived from container rates
+### 3️⃣ Quantify Costs
+| Cost Type | Description |
+|-----------|-------------|
+| Fixed | Rent, utilities, equipment, management |
+| Variable | Production cost per unit in each country |
+| Shipping | Shipping cost per container (converted to per unit) |
 
-### 4. Model Supply and Demand
-- Demand from each country must be fully satisfied
+### 4️⃣ Model Supply & Demand
+- All market demand must be fully satisfied
 - Production can occur locally or be shipped internationally
 
-### 5. Apply Capacity Constraints
-- Plant production ≤ installed capacity
-- Only active plants produce goods
+### 5️⃣ Apply Capacity Constraints
+- Production ≤ plant capacity
+- Only open plants can produce
 
-### 6. Choose Optimization Framework
-- **Mixed Integer Linear Programming (MILP)** using **PuLP**
-- Captures both binary (strategic) and continuous (operational) decisions
+### 6️⃣ Optimization Framework
+- **Mixed Integer Linear Programming (MILP)**
+- Implemented using **Python + PuLP**
+- Handles **binary strategic** and **continuous operational** decisions
 
-### 7. Define Objective Function
-- Minimize total cost = Fixed Plant Costs + Variable Production Costs + Shipping Costs
-- Balances production location and shipping trade-offs
+### 7️⃣ Define Objective
+> Minimize total monthly supply chain cost = Fixed Costs + Production Costs + Shipping Costs
 
-### 8. Solve Model
-- Solver identifies cost-optimal combination of:
-  - Plant locations and sizes
-  - Production allocation per market
-  - Cross-border shipment flows
+### 8️⃣ Solve Model
+- Solver finds **cost-optimal plant network** and production/shipping allocation
+- Generates actionable insights for strategic decision-making
 
-### 9. Analyze Results
-- Total monthly cost
-- Plants opened and their capacities
-- Production and shipping allocations
-- Insights for strategic planning
+### 9️⃣ Analyze & Visualize Results
+- Total cost per month
+- Opened plants and capacities
+- Production allocation by country
+- Shipping flows
 
-### 10. Simulate Scenarios
-- Test network sensitivity to:
-  - Increased shipping costs
-  - Growing demand in specific regions
-  - Capacity expansions
-  - Plant closures
+### 🔟 Simulate Strategic Scenarios
+| Scenario | Description | Insights |
+|----------|------------|---------|
+| Base Case | Current demand and costs | Benchmark cost and plant allocation |
+| Increased India Capacity | Double high-capacity India plant | Reduce global costs by outsourcing to low-cost region |
+| Surging Shipping Costs | Container costs ×5 | Shifts production closer to local markets, increases total cost |
 
 ---
 
-## 📊 Inputs
+## 📊 Input Data
 
-| Input Type | Description |
-|------------|-------------|
-| Fixed Costs | Monthly operating cost per plant type per country |
-| Variable Costs | Production cost per unit per country |
-| Shipping Costs | Shipping cost per container between countries |
-| Plant Capacities | Low / High capacity in thousands of units per month |
-| Market Demand | Units required per country |
+| Input | Description | Format |
+|-------|------------|--------|
+| Fixed Costs | Monthly cost per plant type per country | Excel |
+| Variable Costs | Production cost per unit | Excel |
+| Shipping Costs | Cost per container between countries | Excel |
+| Plant Capacities | Low / High capacity (kUnits/month) | Excel |
+| Market Demand | Units per country | Excel |
 
-_All inputs are managed via Excel for flexible scenario testing._
+> Excel files allow **flexible scenario testing**.
 
 ---
 
 ## 🛠️ Technology Stack
 
-- **Python** – Data processing and modeling
-- **PuLP** – Linear Programming solver
-- **Pandas** – Data handling and analysis
-- **Excel** – Input data management
+- **Python 3.6+** – Modeling & data analysis  
+- **PuLP** – Linear Programming solver  
+- **Pandas** – Data management  
+- **Excel** – Scenario input  
 
 ---
 
-## 🚀 Key Outcomes
+## 📈 Example Results
 
-- Optimal plant location and sizing decisions
-- Cost-effective production and shipping allocations
-- Quantified trade-offs between local vs. global production
-- Scenario-based decision support for strategic planning
+| Country | Low-Capacity Plant | High-Capacity Plant |
+|---------|-----------------|------------------|
+| USA     | 0               | 1                |
+| Germany | 0               | 0                |
+| Japan   | 0               | 1                |
+| Brazil  | 1               | 0                |
+| India   | 0               | 1                |
+
+**Optimal Production Flows (Units/Month)**
+
+| From → To | USA | Germany | Japan | Brazil | India |
+|------------|-----|---------|------|-------|-------|
+| USA        | 1,300,000 | 0 | 200,000 | 0 | 0 |
+| Germany    | 0 | 0 | 0 | 0 | 0 |
+| Japan      | 0 | 0 | 1,500,000 | 0 | 0 |
+| Brazil     | 145,000 | 0 | 0 | 0 | 0 |
+| India      | 1,500,000 | 90,000 | 0 | 0 | 160,000 |
+
+**Total Cost:** \$92,981,000 / Month  
+**Status:** Optimal
 
 ---
 
-## 🔮 Future Scope
+## 🔮 Key Insights
 
-- Include **carbon emissions / sustainability constraints**
+- **Cost-efficient outsourcing:** Low-cost countries (India, Brazil) produce for multiple markets
+- **Localization under high shipping costs:** Plants produce locally when shipping surges
+- **Capacity investments:** Increasing capacity in low-cost regions reduces total cost
+
+---
+
+## ⚡ Next Steps / Extensions
+
+- Include **carbon emissions & sustainability constraints**
 - Model **inventory and storage costs**
-- Incorporate **delivery lead times and customs**
+- Incorporate **delivery lead times & customs**
 - Simulate **currency fluctuations and geopolitical risks**
+
+## 📂 Repository Structure
+
